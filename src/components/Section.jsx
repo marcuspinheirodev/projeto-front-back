@@ -1,0 +1,1 @@
+export default function Section({title,children,align='left',link}){return <section className="section"><div className={`section-heading ${align==='center'?'center':''}`}><h2>{title}</h2>{link&&<a href={link.href}>{link.text} →</a>}</div>{children}</section>}
