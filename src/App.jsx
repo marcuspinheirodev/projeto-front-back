@@ -4,6 +4,7 @@ import { ShoppingBag, SlidersHorizontal, Star, ChevronLeft, ChevronRight } from 
 import Layout from './components/Layout'
 import Section from './components/Section'
 import ProductListing from './components/ProductListing'
+import ProductsCrud from './pages/ProductsCrud'
 import {products,heroImage} from './data/products'
 
 function Home({addToCart}){
@@ -34,4 +35,4 @@ function Product({addToCart}){const {id}=useParams();const p=products.find(x=>x.
 }
 function Cart({cart}){return <Layout><div className="container simple-page"><h1>Meu carrinho</h1>{cart.length?cart.map((p,i)=><div className="cart-item" key={i}><img src={p.image}/><div><b>{p.name}</b><p>R$ {p.priceDiscount.toFixed(2)}</p></div></div>):<p>Seu carrinho está vazio.</p>}<Link className="primary-button" to="/products">Continuar comprando</Link></div></Layout>}
 function Simple({title}){return <Layout><div className="container simple-page"><h1>{title}</h1><p>Esta área estará disponível em uma próxima etapa.</p><Link to="/products">Explorar produtos →</Link></div></Layout>}
-export default function App(){const [cart,setCart]=useState([]);const addToCart=p=>setCart(c=>[...c,p]);return <Routes><Route path="/" element={<Home/>}/><Route path="/products" element={<Products/>}/><Route path="/product/:id" element={<Product addToCart={addToCart}/>}/><Route path="/cart" element={<Cart cart={cart}/>}/><Route path="/categories" element={<Simple title="Categorias"/>}/><Route path="/orders" element={<Simple title="Meus Pedidos"/>}/></Routes>}
+export default function App(){const [cart,setCart]=useState([]);const addToCart=p=>setCart(c=>[...c,p]);return <Routes><Route path="/" element={<Home/>}/><Route path="/products" element={<Products/>}/><Route path="/product/:id" element={<Product addToCart={addToCart}/>}/><Route path="/cart" element={<Cart cart={cart}/>}/><Route path="/categories" element={<Simple title="Categorias"/>}/><Route path="/admin/products" element={<ProductsCrud/>}/><Route path="/orders" element={<Simple title="Meus Pedidos"/>}/></Routes>}
